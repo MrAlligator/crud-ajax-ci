@@ -15,7 +15,9 @@
             <h1 class="page-header">Data
                 <small>Siswa</small>
                 <div class="pull-right"><a href="<?= base_url('auth/logout') ?>" class="btn btn-sm btn-danger"><span class="fa fa-sign-out"></span> Logout</a></div>
-                <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#ModalaAdd"><span class="fa fa-plus"></span> Tambah Siswa</a></div>
+                <?php if ($_SESSION['level'] == 'Admin') : ?>
+                    <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#ModalaAdd"><span class="fa fa-plus"></span> Tambah Siswa</a></div>
+                <?php endif; ?>
             </h1>
         </div>
         <div class="row">
@@ -27,7 +29,9 @@
                             <th>Nama</th>
                             <th>Kelas</th>
                             <th>Jurusan</th>
-                            <th style="text-align: right;">Aksi</th>
+                            <?php if ($_SESSION['level'] == 'Admin') : ?>
+                                <th style="text-align: right;">Aksi</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody id="show_data">
@@ -37,7 +41,11 @@
             </div>
         </div>
         <div class="row">
-            <h6>Halo <?= $user['user_nama'] ?></h6>
+            <?php if ($_SESSION['level'] == 'Admin') : ?>
+                <h6>Halo <?= $user['user_nama'] ?></h6>
+            <?php elseif ($_SESSION['level'] == 'Siswa') : ?>
+                <h6>Halo <?= $siswa['siswa_nama'] ?></h6>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -196,9 +204,9 @@
                                 '<td>' + data[i].siswa_kelas + '</td>' +
                                 '<td>' + data[i].siswa_jurusan + '</td>' +
                                 '<td style="text-align:right;">' +
-                                '<a href="javascript:;" class="btn btn-info btn-xs item_edit" data="' + data[i].siswa_nis + '">Edit</a>' + ' ' +
-                                '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="' + data[i].siswa_nis + '">Hapus</a>' +
-                                '</td>' +
+                                <?php if ($_SESSION['level'] == 'Admin') : ?> '<a href="javascript:;" class="btn btn-info btn-xs item_edit" data="' + data[i].siswa_nis + '">Edit</a>' + ' ' +
+                                    '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="' + data[i].siswa_nis + '">Hapus</a>' +
+                                <?php endif; ?> '</td>' +
                                 '</tr>';
                         }
                         $('#show_data').html(html);

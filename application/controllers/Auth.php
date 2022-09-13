@@ -73,8 +73,7 @@ class Auth extends CI_Controller
     {
         $data['title'] = '403 Forbidden';
 
-        $this->load->view('admin/_partials/head', $data);
-        $this->load->view('backend/dashboard/403', $data);
+        $this->load->view('403', $data);
     }
 
     public function siswa_login()

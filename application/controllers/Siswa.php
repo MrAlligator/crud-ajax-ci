@@ -5,10 +5,13 @@ class Siswa extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_siswa');
+		isLoggedIn();
 	}
+
 	function index()
 	{
 		$data['user'] = $this->db->get_where('tbl_user', ['user_username' => $this->session->userdata('username')])->row_array();
+		$data['siswa'] = $this->db->get_where('tbl_siswa', ['siswa_nis' => $this->session->userdata('username')])->row_array();
 		$this->load->view('v_siswa', $data);
 	}
 
@@ -20,6 +23,8 @@ class Siswa extends CI_Controller
 
 	function get_siswa()
 	{
+		isAdmin();
+
 		$nis = $this->input->get('nis');
 		$data = $this->m_siswa->get_siswa_by_id($nis);
 		echo json_encode($data);
@@ -27,6 +32,8 @@ class Siswa extends CI_Controller
 
 	function simpan()
 	{
+		isAdmin();
+
 		$nis = htmlentities($this->input->post('nis'));
 		$nama = htmlentities($this->input->post('nama'));
 		$kelas = htmlentities($this->input->post('kelas'));
@@ -38,6 +45,8 @@ class Siswa extends CI_Controller
 
 	function update()
 	{
+		isAdmin();
+
 		$nis = $this->input->post('nis_edit');
 		$nama = htmlentities($this->input->post('nama_edit'));
 		$kelas = htmlentities($this->input->post('kelas_edit'));
@@ -48,6 +57,8 @@ class Siswa extends CI_Controller
 
 	function hapus()
 	{
+		isAdmin();
+
 		$nis = $this->input->post('nis');
 		$data = $this->m_siswa->hapus($nis);
 		echo json_encode($data);

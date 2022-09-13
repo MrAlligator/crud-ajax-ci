@@ -42,7 +42,7 @@
                                     <form class="user" action="<?= base_url('auth') ?>" method="POST">
                                         <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" style="display: none;">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="username" id="username" placeholder="Masukkan Username / NIS" onkeypress="return harusHuruf(event)"><?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
+                                            <input type="text" class="form-control form-control-user" name="username" id="username" placeholder="NIS" onkeypress="return harusHuruf(event)"><?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Masukkan Password"><?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
