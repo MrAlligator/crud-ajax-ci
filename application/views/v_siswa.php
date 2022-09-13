@@ -15,6 +15,8 @@
             <h1 class="page-header">Data
                 <small>Siswa</small>
                 <div class="pull-right"><a href="<?= base_url('auth/logout') ?>" class="btn btn-sm btn-danger"><span class="fa fa-sign-out"></span> Logout</a></div>
+                <div class="pull-right"><a href="<?= base_url('siswa/export') ?>" class="btn btn-sm btn-primary"><span class="fa fa-download"></span> Export Excel</a></div>
+                <div class="pull-right"><a href="<?= base_url('siswa/export_pdf') ?>" class="btn btn-sm btn-warning"><span class="fa fa-download"></span> Export PDF</a></div>
                 <?php if ($_SESSION['level'] == 'Admin') : ?>
                     <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#ModalaAdd"><span class="fa fa-plus"></span> Tambah Siswa</a></div>
                 <?php endif; ?>
@@ -46,6 +48,9 @@
             <?php elseif ($_SESSION['level'] == 'Siswa') : ?>
                 <h6>Halo <?= $siswa['siswa_nama'] ?></h6>
             <?php endif; ?>
+        </div>
+        <div class="row">
+            <a href="<?= base_url('rest') ?>" class="btn btn-sm btn-primary">Rest API</a>
         </div>
     </div>
 
